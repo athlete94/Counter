@@ -2,14 +2,14 @@
   text-align: center;
 }
 
-.buttonSettings {
-  width: 243px;
+.AppButton {
+  width: 240px;
   border-radius: 5px;
-  border: none;
   background-color: #956cd9;
   padding: 10px 20px;
   cursor: pointer;
 }
+
 
 /*-------Counter---------*/
 
@@ -78,6 +78,7 @@
 .settings input {
   border-radius: 5px;
   border: none;
+  padding: 2px 5px;
 }
 
 .settings button {
@@ -87,6 +88,7 @@
   font-size: 14px;
   margin-top: 5px;
 }
+
 
 .error {
   color: darkred;

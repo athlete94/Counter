@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Screen} from "./Screen";
 import {Button} from "./Button";
 import {valuesType} from "../App";
@@ -10,6 +10,10 @@ type CounterPropsType = {
 export const Counter = ({values}: CounterPropsType) => {
 
     const [number, setNumber] = useState(values.start)
+
+    useEffect(() => {
+        localStorage.setItem('number', JSON.stringify(number))
+    }, [number])
 
     const incrementHandler = () => {
         setNumber(number + 1)

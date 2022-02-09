@@ -14,12 +14,14 @@ let values: valuesType = {
     start: 0
 }
 
-function App() {
+let titleButton = 'Settings'
 
+function App() {
     const [toggle, setToggle] = useState(false) // переключатель counter и settings
 
     const onClickHandler = () => {
         setToggle(!toggle)
+        toggle ? titleButton = 'Settings' : titleButton = 'Counter'
     }
 
     // задаем значения max и start из компоненты Settings
@@ -32,7 +34,7 @@ function App() {
         <div className={'App'}>
             {toggle ? <Settings values={values} setValues={setValues}/> : <Counter values={values}/>}
 
-            <button className={'buttonSettings'} onClick={onClickHandler}>Settings</button>
+            <button className={'AppButton'} onClick={onClickHandler}>{titleButton}</button>
 
         </div>
 

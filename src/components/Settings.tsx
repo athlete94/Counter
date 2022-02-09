@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {valuesType} from "../App";
 
 type SettingsPropsType = {
@@ -11,6 +11,11 @@ export const Settings = ({setValues, values}:SettingsPropsType) => {
     const [max, setMax] = useState(String(values.max))
     const [start, setStart] = useState(String(values.start))
     const [error, setError] = useState('')
+
+    // useEffect(() => {
+    //     localStorage.setItem('max', JSON.stringify(max))
+    //     localStorage.setItem('start', JSON.stringify(start))
+    // },[max, start])
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setMax(e.currentTarget.value)
