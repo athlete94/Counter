@@ -16,13 +16,13 @@ let values: valuesType = {
 
 function App() {
 
-    const [toggle, setToggle] = useState(false)
-
+    const [toggle, setToggle] = useState(false) // переключатель counter и settings
 
     const onClickHandler = () => {
         setToggle(!toggle)
     }
 
+    // задаем значения max и start из компоненты Settings
     const setValues = (max: string, start: string) => {
         values.max = Number(max)
         values.start = Number(start)

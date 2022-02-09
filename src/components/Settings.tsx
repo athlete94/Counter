@@ -18,6 +18,7 @@ export const Settings = ({setValues, values}:SettingsPropsType) => {
     const startValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setStart(e.currentTarget.value)
     }
+
     const setValuesHandler = () => {
         if (Number(max) > Number(start)) {
             setValues(max, start)
