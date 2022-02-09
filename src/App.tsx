@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {Counter} from "./components/Counter";
+import {Settings} from "./components/Settings";
+
+export type valuesType = {
+    max: number
+    start: number
 }
 
-export default App;
+let values: valuesType = {
+    max: 5,
+    start: 0
+}
+
+function App() {
+
+    const [toggle, setToggle] = useState(false)
+
+
+    const onClickHandler = () => {
+        setToggle(!toggle)
+    }
+
+    const setValues = (max: string, start: string) => {
+        values.max = Number(max)
+        values.start = Number(start)
+    }
+
+    return (
+        <div className={'App'}>
+            {toggle ? <Settings values={values} setValues={setValues}/> : <Counter values={values}/>}
+
+            <button className={'buttonSettings'} onClick={onClickHandler}>Settings</button>
+
+        </div>
+
+    );
+}
+
+export default App
