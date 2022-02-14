@@ -1,40 +1,62 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 
 import {Counter} from "./components/Counter";
 import {Settings} from "./components/Settings";
+import {Button} from "./components/Button";
 
-export type valuesType = {
-    max: number
-    start: number
-}
 
-let values: valuesType = {
-    max: 5,
-    start: 0
-}
-
-let titleButton = 'Settings'
+let titleButton = 'Set'
 
 function App() {
     const [toggle, setToggle] = useState(false) // переключатель counter и settings
 
-    const onClickHandler = () => {
-        setToggle(!toggle)
-        toggle ? titleButton = 'Settings' : titleButton = 'Counter'
+    const [max, setMax] = useState('')
+    const [start, setStart] = useState('')
+
+    useEffect(() => {
+        let valueMax = localStorage.getItem('max')
+        let valueStart = localStorage.getItem('start')
+        if(valueMax){
+            setMax(valueMax)
+        }
+        if(valueStart) {
+            setStart(valueStart)
+        }
+
+
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('max', max)
+        localStorage.setItem('start', start)
+    },[max, start])
+
+    const setMaxValue = (max: string) => {
+        setMax(max)
+    }
+    const setStartValue = (start: string) => {
+        setStart(start)
     }
 
-    // задаем значения max и start из компоненты Settings
-    const setValues = (max: string, start: string) => {
-        values.max = Number(max)
-        values.start = Number(start)
+    const toggleHandler = () => {
+        setToggle(!toggle)
     }
+
 
     return (
         <div className={'App'}>
-            {toggle ? <Settings values={values} setValues={setValues}/> : <Counter values={values}/>}
+            {toggle ? <Settings setMaxValue={setMaxValue}
+                                setStartValue={setStartValue}
+                                max={max}
+                                start={start}
 
-            <button className={'AppButton'} onClick={onClickHandler}>{titleButton}</button>
+                                titleButton={titleButton}
+                                toggleHandler={toggleHandler}
+            /> : <Counter max={Number(max)}
+                          start={Number(start)}
+                          titleButton={titleButton}
+                          toggleHandler={toggleHandler}/>}
 
         </div>
 

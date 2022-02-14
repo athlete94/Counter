@@ -1,37 +1,46 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {valuesType} from "../App";
+import {Button} from "./Button";
 
 type SettingsPropsType = {
-    setValues: (max:string, start: string) => void
-    values: valuesType
+    setStartValue: (start: string) => void,
+    setMaxValue: (max: string) => void
+    max: string
+    start: string
+
+    titleButton: string
+    toggleHandler: () => void
 }
 
-export const Settings = ({setValues, values}:SettingsPropsType) => {
 
-    const [max, setMax] = useState(String(values.max))
-    const [start, setStart] = useState(String(values.start))
+export const Settings = ({setStartValue, setMaxValue, max, start, titleButton, toggleHandler}: SettingsPropsType) => {
+
     const [error, setError] = useState('')
+    const [disabled, setDisabled] = useState(false)
 
-    // useEffect(() => {
-    //     localStorage.setItem('max', JSON.stringify(max))
-    //     localStorage.setItem('start', JSON.stringify(start))
-    // },[max, start])
 
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMax(e.currentTarget.value)
+        setDisabled(false)
+        setError('')
+        setMaxValue(e.currentTarget.value.replace(/[^\d]/g, ''))
+
     }
     const startValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setStart(e.currentTarget.value)
+        setDisabled(false)
+        setError('')
+        setStartValue(e.currentTarget.value.replace(/[^\d]/g, ''))
     }
 
-    const setValuesHandler = () => {
-        if (Number(max) > Number(start)) {
-            setValues(max, start)
-            setError('')
-        } else {
-            setError('Start value must be less than max value')
-        }
 
+    const setValuesHandler = () => {
+
+        if (Number(max) <= Number(start)) {
+            setDisabled(true)
+            setError('Max value should be more than start value')
+        } else {
+            debugger
+            setDisabled(false)
+            toggleHandler()
+        }
     }
 
     return (
@@ -47,13 +56,12 @@ export const Settings = ({setValues, values}:SettingsPropsType) => {
                 <span>start value</span>
                 <input type="number"
                        value={start}
-                onChange={startValueHandler}/>
+                       onChange={startValueHandler}/>
             </div>
             <div className={'error'}>
                 <span>{error}</span>
             </div>
-
-            <button onClick={setValuesHandler}>Set values</button>
+            <Button onClickHandler={setValuesHandler} titleButton={titleButton} disabled={disabled}/>
 
         </div>
     );

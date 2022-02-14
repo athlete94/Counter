@@ -2,14 +2,6 @@
   text-align: center;
 }
 
-.AppButton {
-  width: 240px;
-  border-radius: 5px;
-  background-color: #956cd9;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
 
 /*-------Counter---------*/
 
@@ -19,7 +11,7 @@
   background-color: #a47de2;
 
   font-size: 20px;
-  width: 200px;
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -32,16 +24,14 @@
 }
 
 .button {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 5px;
   border-radius: 5px;
 
-  display: flex;
-  justify-content: space-around;
+  display: inline-block;
 }
 
 .button button {
-  padding: 10px 20px;
+  padding: 7px 15px;
   background-color: #8d5cdb;
   border-radius: 3px;
   font-size: 16px;

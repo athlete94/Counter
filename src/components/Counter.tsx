@@ -1,15 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {Screen} from "./Screen";
 import {Button} from "./Button";
-import {valuesType} from "../App";
+
 
 type CounterPropsType = {
-    values: valuesType
+    max: number
+    start: number
+    titleButton: string
+    toggleHandler: () => void
 }
 
-export const Counter = ({values}: CounterPropsType) => {
+export const Counter = ({max, start, titleButton, toggleHandler}: CounterPropsType) => {
 
-    const [number, setNumber] = useState(values.start)
+    const [number, setNumber] = useState(Number(start))
+
+    useEffect(() => {
+        let numberAsString = localStorage.getItem('number')
+        if(numberAsString) {
+            let localNumber = JSON.parse(numberAsString)
+            setNumber(prev =>  localNumber = prev)
+        }
+    }, [])
 
     useEffect(() => {
         localStorage.setItem('number', JSON.stringify(number))
@@ -19,20 +30,25 @@ export const Counter = ({values}: CounterPropsType) => {
         setNumber(number + 1)
     }
     const resetHandler = () => {
-        setNumber(values.start)
+        setNumber(Number(start))
+    }
+
+    const onClickHandler = () => {
+        toggleHandler()
     }
 
     return (
         <div className="counter">
-            <Screen number={number} max={values.max}/>
+            <Screen number={number} max={max}/>
 
-            <div className='button'>
+            <div >
                 <Button onClickHandler={incrementHandler}
-                        title={'inc'}
-                        disabled={number === values.max}/>
+                        titleButton={'inc'}
+                        disabled={number === max}/>
                 <Button onClickHandler={resetHandler}
-                        title={'reset'}
-                        disabled={number === values.start}/>
+                        titleButton={'reset'}
+                        disabled={number === start}/>
+                <Button titleButton={titleButton} onClickHandler={onClickHandler} />
             </div>
         </div>
     );
