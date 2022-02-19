@@ -2,7 +2,7 @@ import React from "react";
 
 type ButtonPropsType = {
     onClickHandler: () => void
-    titleButton: string
+    titleButton?: string
     disabled?: boolean
 }
 

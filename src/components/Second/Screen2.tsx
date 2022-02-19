@@ -5,7 +5,7 @@ type CounterPropsType = {
     max: number
 }
 
-export const Screen: React.FC<CounterPropsType> = ({number,max}) => {
+export const Screen2: React.FC<CounterPropsType> = ({number,max}) => {
     return <div className={number === max ? 'red' : 'count'} >
         <span>{number}</span>
     </div>

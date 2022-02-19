@@ -1,18 +1,16 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Button} from "./Button";
+import {Button} from "../Button";
 
 type SettingsPropsType = {
     setStartValue: (start: string) => void,
     setMaxValue: (max: string) => void
     max: string
     start: string
+    setScreen: (screenValue: string) => void
 
-    titleButton: string
-    toggleHandler: () => void
 }
 
-
-export const Settings = ({setStartValue, setMaxValue, max, start, titleButton, toggleHandler}: SettingsPropsType) => {
+export const Settings = ({setStartValue, setMaxValue, max, start, setScreen}: SettingsPropsType) => {
 
     const [error, setError] = useState('')
     const [disabled, setDisabled] = useState(false)
@@ -21,6 +19,7 @@ export const Settings = ({setStartValue, setMaxValue, max, start, titleButton, t
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setDisabled(false)
         setError('')
+        setScreen('Enter values and press set')
         setMaxValue(e.currentTarget.value.replace(/[^\d]/g, ''))
 
     }
@@ -28,18 +27,17 @@ export const Settings = ({setStartValue, setMaxValue, max, start, titleButton, t
         setDisabled(false)
         setError('')
         setStartValue(e.currentTarget.value.replace(/[^\d]/g, ''))
+        setScreen('Enter values and press set')
     }
 
 
     const setValuesHandler = () => {
-
         if (Number(max) <= Number(start)) {
             setDisabled(true)
             setError('Max value should be more than start value')
         } else {
-            debugger
             setDisabled(false)
-            toggleHandler()
+            setScreen(start)
         }
     }
 
@@ -61,7 +59,7 @@ export const Settings = ({setStartValue, setMaxValue, max, start, titleButton, t
             <div className={'error'}>
                 <span>{error}</span>
             </div>
-            <Button onClickHandler={setValuesHandler} titleButton={titleButton} disabled={disabled}/>
+            <Button onClickHandler={setValuesHandler} disabled={disabled} titleButton={'Set'}/>
 
         </div>
     );

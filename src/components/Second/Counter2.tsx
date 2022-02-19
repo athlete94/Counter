@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Screen} from "./Screen";
-import {Button} from "./Button";
+import {Screen2} from "./Screen2";
+import {Button} from "../Button";
 
 
 type CounterPropsType = {
@@ -10,7 +10,7 @@ type CounterPropsType = {
     toggleHandler: () => void
 }
 
-export const Counter = ({max, start, titleButton, toggleHandler}: CounterPropsType) => {
+export const Counter2 = ({max, start, titleButton, toggleHandler}: CounterPropsType) => {
 
     const [number, setNumber] = useState(Number(start))
 
@@ -39,7 +39,7 @@ export const Counter = ({max, start, titleButton, toggleHandler}: CounterPropsTy
 
     return (
         <div className="counter">
-            <Screen number={number} max={max}/>
+            <Screen2 number={number} max={max}/>
 
             <div >
                 <Button onClickHandler={incrementHandler}

@@ -1,9 +1,12 @@
-.App {
+.AppCounter {
   text-align: center;
+  margin: 0 auto;
+  width: 600px;
+  display: flex
 }
 
 
-/*-------Counter---------*/
+/*-------Counter1---------*/
 
 .counter {
   padding: 20px;
@@ -48,7 +51,7 @@
   border-radius: 5px;
 }
 
-/*-------Settings----------*/
+/*-------Settings2----------*/
 
 .settings {
   padding: 20px;
@@ -56,13 +59,15 @@
   background-color: #a47de2;
 
   font-size: 16px;
-  width: 200px;
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .settingsItem {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .settings input {
@@ -79,7 +84,34 @@
   margin-top: 5px;
 }
 
-
 .error {
   color: darkred;
+}
+
+.navigate {
+  text-align: center;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.navigate a {
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+.navigate a:active {
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 auto;
+  font-size: 16px;
+  box-shadow: 0 0 5px rgb(115, 47, 255) inset;
+  color: #8d5cdb;
 }
