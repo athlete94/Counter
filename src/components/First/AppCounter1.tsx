@@ -8,32 +8,36 @@ const AppCounter1 = () => {
     const [max, setMax] = useState('')
     const [start, setStart] = useState('')
     const [screenValue, setScreenValue] = useState('')
+    const [disabledCounterBtn, setDisabledCounterBtn] = useState(false)
 
-    console.log(screenValue)
-    // useEffect(() => {
-    //     let valueMax = localStorage.getItem('max')
-    //     let valueStart = localStorage.getItem('start')
-    //     if(valueMax){
-    //         setMax(valueMax)
-    //     }
-    //     if(valueStart) {
-    //         setStart(valueStart)
-    //     }
-    //
-    //
-    // }, [])
 
-    // useEffect(() => {
-    //     localStorage.setItem('max', max)
-    //     localStorage.setItem('start', start)
-    // },[max, start])
+    useEffect(() => {
+        let valueMax = localStorage.getItem('max')
+        let valueStart = localStorage.getItem('start')
+        let screenValue = localStorage.getItem('screen')
+        if (valueMax) {
+            setMax(valueMax)
+        }
+        if (valueStart) {
+            setStart(valueStart)
+        }
+        if (screenValue) {
+            setScreenValue(screenValue)
+        }
+    }, [])
+    useEffect(() => {
+        localStorage.setItem('max', max)
+        localStorage.setItem('start', start)
+        localStorage.setItem('screen', screenValue)
+    }, [max, start, screenValue])
 
     const setMaxValue = (max: string) => {
+        setDisabledCounterBtn(true)
         setMax(max)
     }
     const setStartValue = (start: string) => {
+        setDisabledCounterBtn(true)
         setStart(start)
-
     }
 
     const setScreen = (screenValue: string) => {
@@ -44,10 +48,11 @@ const AppCounter1 = () => {
     return (
         <div className={'AppCounter'}>
             <Settings setMaxValue={setMaxValue}
-                                setStartValue={setStartValue}
-                                max={max}
-                                start={start}
+                      setStartValue={setStartValue}
+                      max={max}
+                      start={start}
                       setScreen={setScreen}
+                      setDisabledCounterBtn={setDisabledCounterBtn}
 
 
             />
@@ -55,6 +60,7 @@ const AppCounter1 = () => {
                       start={Number(start)}
                       screenValue={screenValue}
                       setScreen={setScreen}
+                      disabledCounterBtn={disabledCounterBtn}
             />
 
         </div>

@@ -10,29 +10,43 @@ const AppCounter2 = () => {
     const [max, setMax] = useState('')
     const [start, setStart] = useState('')
 
+    const [number, setNumber] = useState(Number(start))
+
     useEffect(() => {
-        let valueMax = localStorage.getItem('max')
-        let valueStart = localStorage.getItem('start')
+        let valueMax = localStorage.getItem('max1')
+        let valueStart = localStorage.getItem('start1')
+        let number = localStorage.getItem('number1')
         if(valueMax){
             setMax(valueMax)
         }
         if(valueStart) {
             setStart(valueStart)
         }
+        if(number) {
+            setNumber(Number(number))
+        }
 
 
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('max', max)
-        localStorage.setItem('start', start)
-    },[max, start])
+        localStorage.setItem('max1', max)
+        localStorage.setItem('start1', start)
+        localStorage.setItem('number1', number.toString())
+    },[max, start, number])
 
     const setMaxValue = (max: string) => {
         setMax(max)
     }
     const setStartValue = (start: string) => {
         setStart(start)
+    }
+
+    const incrementHandler = () => {
+        setNumber(number + 1)
+    }
+    const resetHandler = () => {
+        setNumber(Number(start))
     }
 
     const toggleHandler = () => {
@@ -49,10 +63,17 @@ const AppCounter2 = () => {
 
                                  titleButton={titleButton}
                                  toggleHandler={toggleHandler}
+                                 setNumber={setNumber}
+
             /> : <Counter2 max={Number(max)}
                            start={Number(start)}
                            titleButton={titleButton}
-                           toggleHandler={toggleHandler}/>}
+                           toggleHandler={toggleHandler}
+
+                           incrementHandler={incrementHandler}
+                           resetHandler={resetHandler}
+                           number={number}
+            />}
 
         </div>
 

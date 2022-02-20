@@ -7,10 +7,10 @@ type SettingsPropsType = {
     max: string
     start: string
     setScreen: (screenValue: string) => void
-
+    setDisabledCounterBtn: (disabledCounterBtn: boolean) => void
 }
 
-export const Settings = ({setStartValue, setMaxValue, max, start, setScreen}: SettingsPropsType) => {
+export const Settings = ({setStartValue, setMaxValue, max, start, setScreen, setDisabledCounterBtn}: SettingsPropsType) => {
 
     const [error, setError] = useState('')
     const [disabled, setDisabled] = useState(false)
@@ -20,14 +20,36 @@ export const Settings = ({setStartValue, setMaxValue, max, start, setScreen}: Se
         setDisabled(false)
         setError('')
         setScreen('Enter values and press set')
-        setMaxValue(e.currentTarget.value.replace(/[^\d]/g, ''))
+        setMaxValue(e.currentTarget.value)
+
+        if (Number(e.currentTarget.value) < 0 || Number(start) < 0) {
+            setScreen('Incorrect value!')
+            setDisabled(true)
+        }
+        else if(e.currentTarget.value === '' || start === '' ) {
+            setDisabled(true)
+        }
+        else {
+            setDisabled(false)
+        }
 
     }
     const startValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setDisabled(false)
         setError('')
-        setStartValue(e.currentTarget.value.replace(/[^\d]/g, ''))
         setScreen('Enter values and press set')
+        setStartValue(e.currentTarget.value)
+
+        if (Number(e.currentTarget.value) < 0 || Number(max) < 0 ) {
+            setScreen('Incorrect value!')
+            setDisabled(true)
+        }
+        else if(e.currentTarget.value === '' || max === '' ) {
+            setDisabled(true)
+        }
+        else {
+            setDisabled(false)
+        }
     }
 
 
@@ -37,6 +59,8 @@ export const Settings = ({setStartValue, setMaxValue, max, start, setScreen}: Se
             setError('Max value should be more than start value')
         } else {
             setDisabled(false)
+            setDisabledCounterBtn(false)
+            setError('')
             setScreen(start)
         }
     }

@@ -9,10 +9,12 @@ type SettingsPropsType = {
 
     titleButton: string
     toggleHandler: () => void
+
+    setNumber: (number: number) => void
 }
 
 
-export const Settings2 = ({setStartValue, setMaxValue, max, start, titleButton, toggleHandler}: SettingsPropsType) => {
+export const Settings2 = ({setStartValue, setMaxValue, max, start, titleButton, toggleHandler, setNumber}: SettingsPropsType) => {
 
     const [error, setError] = useState('')
     const [disabled, setDisabled] = useState(false)
@@ -43,6 +45,7 @@ export const Settings2 = ({setStartValue, setMaxValue, max, start, titleButton, 
         }
         else {
             setDisabled(false)
+            setNumber(Number(start))
             toggleHandler()
         }
     }

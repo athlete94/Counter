@@ -8,23 +8,11 @@ type CounterPropsType = {
     start: number
     screenValue: string
     setScreen: (screenValue: string) => void
+    disabledCounterBtn: boolean
 }
 
-export const Counter1 = ({max, start, screenValue, setScreen}: CounterPropsType) => {
+export const Counter1 = ({max, start, screenValue, setScreen, disabledCounterBtn}: CounterPropsType) => {
 
-
-
-    // useEffect(() => {
-    //     let numberAsString = localStorage.getItem('number')
-    //     if (numberAsString) {
-    //         let localNumber = JSON.parse(numberAsString)
-    //         setNumber(prev => localNumber = prev)
-    //     }
-    // }, [])
-    //
-    // useEffect(() => {
-    //     localStorage.setItem('number', JSON.stringify(number))
-    // }, [number])
 
     const incrementHandler = () => {
         setScreen(String(Number(screenValue) + 1))
@@ -35,15 +23,16 @@ export const Counter1 = ({max, start, screenValue, setScreen}: CounterPropsType)
 
     return (
         <div className="counter">
-            <Screen1 number={String(screenValue)} max={max}/>
+            <Screen1 screen={String(screenValue)} max={max}/>
 
             <div>
                 <Button onClickHandler={incrementHandler}
                         titleButton={'inc'}
-                        disabled={Number(screenValue) === max}/>
+                        disabled={Number(screenValue) === max || disabledCounterBtn }
+                />
                 <Button onClickHandler={resetHandler}
                         titleButton={'reset'}
-                        disabled={Number(screenValue) === start}/>
+                        disabled={Number(screenValue) === start || disabledCounterBtn}/>
             </div>
         </div>
     );
