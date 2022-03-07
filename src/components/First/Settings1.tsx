@@ -10,7 +10,15 @@ type SettingsPropsType = {
     setDisabledCounterBtn: (disabledCounterBtn: boolean) => void
 }
 
-export const Settings = ({setStartValue, setMaxValue, max, start, setScreen, setDisabledCounterBtn}: SettingsPropsType) => {
+export const Settings = (props: SettingsPropsType) => {
+    const {
+        setStartValue,
+        setMaxValue,
+        max,
+        start,
+        setScreen,
+        setDisabledCounterBtn
+    } = props
 
     const [error, setError] = useState('')
     const [disabled, setDisabled] = useState(false)
@@ -25,11 +33,12 @@ export const Settings = ({setStartValue, setMaxValue, max, start, setScreen, set
         if (Number(e.currentTarget.value) < 0 || Number(start) < 0) {
             setScreen('Incorrect value!')
             setDisabled(true)
-        }
-        else if(e.currentTarget.value === '' || start === '' ) {
+        } else if (Number(e.currentTarget.value) <= Number(start)) {
+            setScreen('Max value should be bigger than start value')
             setDisabled(true)
-        }
-        else {
+        } else if (e.currentTarget.value === '' || start === '') {
+            setDisabled(true)
+        } else {
             setDisabled(false)
         }
 
@@ -40,29 +49,25 @@ export const Settings = ({setStartValue, setMaxValue, max, start, setScreen, set
         setScreen('Enter values and press set')
         setStartValue(e.currentTarget.value)
 
-        if (Number(e.currentTarget.value) < 0 || Number(max) < 0 ) {
+        if (Number(e.currentTarget.value) < 0 || Number(max) < 0) {
             setScreen('Incorrect value!')
             setDisabled(true)
-        }
-        else if(e.currentTarget.value === '' || max === '' ) {
+        } else if (Number(e.currentTarget.value) >= Number(max)) {
+            setScreen('Max value should be bigger than start value')
             setDisabled(true)
-        }
-        else {
+        } else if (e.currentTarget.value === '' || max === '') {
+            setDisabled(true)
+        } else {
             setDisabled(false)
         }
     }
 
 
     const setValuesHandler = () => {
-        if (Number(max) <= Number(start)) {
-            setDisabled(true)
-            setError('Max value should be more than start value')
-        } else {
             setDisabled(false)
             setDisabledCounterBtn(false)
             setError('')
             setScreen(start)
-        }
     }
 
     return (
