@@ -5,16 +5,21 @@ import {Counter1} from "./Counter1";
 
 const AppCounter1 = () => {
 
-    const [max, setMax] = useState('')
+    const [max,  setMax] = useState('')
     const [start, setStart] = useState('')
     const [screenValue, setScreenValue] = useState('')
     const [disabledCounterBtn, setDisabledCounterBtn] = useState(false)
+    const [disabledSettingsBtn, setDisabledSettingsBtn] = useState(false)
 
 
     useEffect(() => {
         let valueMax = localStorage.getItem('max')
         let valueStart = localStorage.getItem('start')
         let screenValue = localStorage.getItem('screen')
+        if(Number(valueMax) <= Number(valueStart) || (Number(valueMax) < 0 || Number(valueStart) )) {
+            setDisabledCounterBtn(true)
+            setDisabledSettingsBtn(true)
+        }
         if (valueMax) {
             setMax(valueMax)
         }
@@ -53,6 +58,9 @@ const AppCounter1 = () => {
                       start={start}
                       setScreen={setScreen}
                       setDisabledCounterBtn={setDisabledCounterBtn}
+
+                      disabledSettingsBtn={disabledSettingsBtn}
+                      setDisabledSettingsBtn={setDisabledSettingsBtn}
 
 
             />
