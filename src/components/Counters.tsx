@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import AppCounter1 from "./First/AppCounter1";
+import {AppCounter1Container} from "./First/AppCounter1Container";
 import AppCounter2 from "./Second/AppCounter2";
 
 
@@ -13,7 +13,7 @@ const Counters = () => {
     return (
         <div>
             <Routes>
-                <Route path={PATH.COUNTER_1} element={<AppCounter1 />}/>
+                <Route path={PATH.COUNTER_1} element={<AppCounter1Container />}/>
                 <Route path={PATH.COUNTER_2} element={<AppCounter2 />}/>
             </Routes>
         </div>

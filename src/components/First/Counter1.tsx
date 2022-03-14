@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Screen1} from "./Screen1";
 import {Button} from "../Button";
 
@@ -7,19 +7,21 @@ type CounterPropsType = {
     max: number
     start: number
     screenValue: string
-    setScreen: (screenValue: string) => void
     disabledCounterBtn: boolean
+    incrementHandler: () => void
+    resetHandler: () => void
 }
 
-export const Counter1 = ({max, start, screenValue, setScreen, disabledCounterBtn}: CounterPropsType) => {
+export const Counter1 = (props: CounterPropsType) => {
 
-
-    const incrementHandler = () => {
-        setScreen(String(Number(screenValue) + 1))
-    }
-    const resetHandler = () => {
-        setScreen(String(start))
-    }
+    const {
+        max,
+        start,
+        screenValue,
+        disabledCounterBtn,
+        incrementHandler,
+        resetHandler
+    } = props
 
     return (
         <div className="counter">
@@ -28,7 +30,7 @@ export const Counter1 = ({max, start, screenValue, setScreen, disabledCounterBtn
             <div>
                 <Button onClickHandler={incrementHandler}
                         titleButton={'inc'}
-                        disabled={Number(screenValue) === max || disabledCounterBtn }
+                        disabled={Number(screenValue) === max || disabledCounterBtn}
                 />
                 <Button onClickHandler={resetHandler}
                         titleButton={'reset'}
