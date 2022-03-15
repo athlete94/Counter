@@ -1,3 +1,5 @@
+import {RootStateType} from "./store";
+
 enum ACTIONS_TYPE {
     SET_MAX_VALUE = 'SET_MAX_VALUE',
     SET_START_VALUE = 'SET_START_VALUE',
@@ -7,7 +9,7 @@ enum ACTIONS_TYPE {
     SET_DIS_COUNT = 'SET_DIS_COUNT',
 }
 
-export type initialStateType = typeof initialState
+export type StateType = typeof initialState
 
 let initialState = {
     max: '',
@@ -18,7 +20,7 @@ let initialState = {
     error: '',
 }
 
-export const CounterReducer1 = (state: initialStateType = initialState, action: ActionType): initialStateType => {
+export const CounterReducer1 = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case ACTIONS_TYPE.SET_MAX_VALUE:
             return {
@@ -58,7 +60,7 @@ export const CounterReducer1 = (state: initialStateType = initialState, action: 
 };
 
 
-type ActionType = SetMaxValueType | SetStartValueType | SetScreenType | SetErrorType | SetDisabledSettingsBtnType | SetDisabledCounterBtnType
+export type ActionType = SetMaxValueType | SetStartValueType | SetScreenType | SetErrorType | SetDisabledSettingsBtnType | SetDisabledCounterBtnType
 
 type SetMaxValueType = ReturnType<typeof setMaxValue>
 export const setMaxValue = (max: string) => {
@@ -119,3 +121,5 @@ export const setDisabledCounterBtn = (disabled: boolean) => {
         }
     } as const
 }
+
+export const selectValues = (store: RootStateType) => store.CounterReducer1
