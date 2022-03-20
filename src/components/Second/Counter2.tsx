@@ -10,7 +10,7 @@ type CounterPropsType = {
     toggleHandler: () => void
     resetHandler: () => void
     incrementHandler: () => void
-    number: number
+    screen: number
 
 }
 
@@ -21,39 +21,22 @@ export const Counter2 = ({
                              toggleHandler,
                              resetHandler,
                              incrementHandler,
-                             number
+                             screen
                          }: CounterPropsType) => {
 
 
-    // useEffect(() => {
-    //     let numberAsString = localStorage.getItem('number')
-    //     if(numberAsString) {
-    //         let localNumber = JSON.parse(numberAsString)
-    //         setNumber(localNumber)
-    //     }
-    // }, [])
-    //
-    // useEffect(() => {
-    //     localStorage.setItem('number', JSON.stringify(number))
-    // }, [number])
-
-
-    const onClickHandler = () => {
-        toggleHandler()
-    }
-
     return (
         <div className="counter">
-            <Screen2 number={number} max={max}/>
+            <Screen2 screen={screen} max={max}/>
 
             <div>
                 <Button onClickHandler={incrementHandler}
                         titleButton={'inc'}
-                        disabled={number === max}/>
+                        disabled={screen === max}/>
                 <Button onClickHandler={resetHandler}
                         titleButton={'reset'}
-                        disabled={number === start}/>
-                <Button titleButton={titleButton} onClickHandler={onClickHandler}/>
+                        disabled={screen === start}/>
+                <Button titleButton={titleButton} onClickHandler={toggleHandler}/>
             </div>
         </div>
     );

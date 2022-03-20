@@ -1,12 +1,12 @@
 import React from "react";
 
 type CounterPropsType = {
-    number: number
+    screen: number
     max: number
 }
 
-export const Screen2: React.FC<CounterPropsType> = ({number,max}) => {
-    return <div className={number === max ? 'red' : 'count'} >
-        <span>{number}</span>
+export const Screen2: React.FC<CounterPropsType> = ({screen,max}) => {
+    return <div className={screen === max ? 'red' : 'count'} >
+        <span>{screen}</span>
     </div>
 }

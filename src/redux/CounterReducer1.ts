@@ -122,4 +122,4 @@ export const setDisabledCounterBtn = (disabled: boolean) => {
     } as const
 }
 
-export const selectValues = (store: RootStateType) => store.CounterReducer1
+export const  selectValues = (store: RootStateType) => store.CounterReducer1

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import {AppCounter1} from "./First/AppCounter1Container";
-import AppCounter2 from "./Second/AppCounter2";
+import {AppCounter1} from "./First/AppCounter1";
+import {AppCounter2} from "./Second/AppCounter2";
 
 
 export const PATH = {
