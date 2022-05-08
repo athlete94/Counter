@@ -15,7 +15,7 @@ let initialState = {
     max: '',
     start: '',
     screenValue: '',
-    disabledCounterBtn: false,
+    disabledCounterBtn: true,
     disabledSettingsBtn: false,
     error: '',
 }
