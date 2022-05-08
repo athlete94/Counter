@@ -27,32 +27,33 @@ export const AppCounter1 = () => {
     const dispatch = useDispatch<Dispatch<ActionType>>()
 
 
-    useEffect(() => {
-        let valueMax = localStorage.getItem('max')
-        let valueStart = localStorage.getItem('start')
-        let screenValue = localStorage.getItem('screen')
-        if (Number(valueMax) <= Number(valueStart) || (Number(valueMax) < 0 || Number(valueStart) < 0)) {
-            dispatch(setDisabledCounterBtn(true))
-            dispatch(setDisabledSettingsBtn(true))
-        } else {
-            dispatch(setDisabledCounterBtn(false))
-            dispatch(setDisabledSettingsBtn(false))
-        }
-        if (valueMax) {
-            dispatch(setMaxValue(valueMax))
-        }
-        if (valueStart) {
-            dispatch(setStartValue(valueStart))
-        }
-        if (screenValue) {
-            dispatch(setScreen(screenValue))
-        }
-    }, [])
-    useEffect(() => {
-        localStorage.setItem('max', max)
-        localStorage.setItem('start', start)
-        localStorage.setItem('screen', screenValue)
-    }, [max, start, screenValue])
+    // useEffect(() => {
+    //     let valueMax = localStorage.getItem('max')
+    //     let valueStart = localStorage.getItem('start')
+    //     let screenValue = localStorage.getItem('screen')
+    //     if (Number(valueMax) <= Number(valueStart) || (Number(valueMax) < 0 || Number(valueStart) < 0)) {
+    //         dispatch(setDisabledCounterBtn(true))
+    //         dispatch(setDisabledSettingsBtn(true))
+    //     } else {
+    //         dispatch(setDisabledCounterBtn(false))
+    //         dispatch(setDisabledSettingsBtn(false))
+    //     }
+    //     if (valueMax) {
+    //         dispatch(setMaxValue(valueMax))
+    //     }
+    //     if (valueStart) {
+    //         dispatch(setStartValue(valueStart))
+    //     }
+    //     if (screenValue) {
+    //         dispatch(setScreen(screenValue))
+    //     }
+    // }, [])
+    //
+    // useEffect(() => {
+    //     localStorage.setItem('max', max)
+    //     localStorage.setItem('start', start)
+    //     localStorage.setItem('screen', screenValue)
+    // }, [max, start, screenValue])
 
     //settings
     const maxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {

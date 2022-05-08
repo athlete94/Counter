@@ -26,27 +26,27 @@ export const AppCounter2 = () => {
     } = useSelector<RootStateType, InitialStateType >(state => state.CounterReducer2)
     const dispatch = useDispatch<Dispatch<CounterReducer2ActionType>>()
 
-    useEffect(() => {
-        let valueMax = localStorage.getItem('max1')
-        let valueStart = localStorage.getItem('start1')
-        let number = localStorage.getItem('number1')
-        if(valueMax){
-            dispatch(setMax(valueMax))
-        }
-        if(valueStart) {
-            dispatch(setStart(valueStart))
-        }
-        if(number) {
-            dispatch(setScreen(Number(number)))
-        }
-
-
-    }, [])
-    useEffect(() => {
-        localStorage.setItem('max1', max)
-        localStorage.setItem('start1', start)
-        localStorage.setItem('number1', screen.toString())
-    },[max, start, screen])
+    // useEffect(() => {
+    //     let valueMax = localStorage.getItem('max1')
+    //     let valueStart = localStorage.getItem('start1')
+    //     let number = localStorage.getItem('number1')
+    //     if(valueMax){
+    //         dispatch(setMax(valueMax))
+    //     }
+    //     if(valueStart) {
+    //         dispatch(setStart(valueStart))
+    //     }
+    //     if(number) {
+    //         dispatch(setScreen(Number(number)))
+    //     }
+    //
+    //
+    // }, [])
+    // useEffect(() => {
+    //     localStorage.setItem('max1', max)
+    //     localStorage.setItem('start1', start)
+    //     localStorage.setItem('number1', screen.toString())
+    // },[max, start, screen])
 
     const incrementHandler = () => {
         dispatch(setScreen(screen + 1))
